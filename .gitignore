@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+._*
+
+# gstack / agent tooling artifacts — never publish (contains local tokens + audit logs)
+.gstack/
+**/.gstack/
+
+# editor
+.vscode/
+.idea/
+*.swp
