@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}活動管理 · Formosa Founders House{% endblock %}
+{% block robots %}noindex,nofollow{% endblock %}
+{% block body_class %}admin-body{% endblock %}
+{% block content %}
+<section class="admin-shell event-admin-shell">
+  <a class="back-link" href="{{ url_for('admin_dashboard') }}">← 回到審核總覽</a>
+  <header class="admin-heading"><div><p class="eyebrow">HOUSE EVENTS</p><h1>活動管理</h1></div></header>
+  <div class="event-admin-layout">
+    <section class="admin-card event-create-card">
+      <div class="section-heading"><h2>建立新活動</h2><span>SF TIME</span></div>
+      {% if errors %}<div class="error-summary"><ul>{% for error in errors %}<li>{{ error }}</li>{% endfor %}</ul></div>{% endif %}
+      <form method="post" class="compact-form">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <label>活動名稱<span>Required</span><input name="name" required value="{{ values.get('name', '') }}" placeholder="例如：Founder Dinner"></label>
+        <label>活動說明<textarea name="description" rows="4" placeholder="報名者會在活動頁看到這段說明。">{{ values.get('description', '') }}</textarea></label>
+        <div class="field-grid two">
+          <label>開始時間<input type="datetime-local" name="starts_at" required value="{{ values.get('starts_at', '') }}"></label>
+          <label>結束時間<input type="datetime-local" name="ends_at" required value="{{ values.get('ends_at', '') }}"></label>
+        </div>
+        <button class="primary-action" type="submit">建立活動與報名連結 →</button>
+      </form>
+    </section>
+    <section class="admin-card event-manage-card">
+      <div class="section-heading"><h2>活動與報名連結</h2><span>{{ events|length }} EVENTS</span></div>
+      <div class="managed-event-list">
+        {% for event in events %}
+          <article>
+            <div>
+              <span class="role-badge {{ 'approved' if event.is_published }}">{{ '開放中' if event.is_published else '已關閉' }}</span>
+              <h3>{{ event.name }}</h3>
+              <p>{{ event.starts_at|datetime_local }} → {{ event.ends_at|datetime_local }} · {{ event.registration_count }} 人報名</p>
+              <a href="{{ url_for('event_registration', token=event.public_token, _external=True) }}" target="_blank">開啟專屬報名頁 ↗</a>
+            </div>
+            <form method="post" action="{{ url_for('admin_toggle_event', event_id=event.id) }}">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+              <button class="secondary-action" type="submit">{{ '關閉報名' if event.is_published else '重新開放' }}</button>
+            </form>
+          </article>
+        {% else %}<p class="empty-copy">還沒有活動。建立後會在這裡看到專屬報名連結。</p>{% endfor %}
+      </div>
+    </section>
+  </div>
+</section>
+{% endblock %}

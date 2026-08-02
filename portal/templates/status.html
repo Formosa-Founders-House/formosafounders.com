@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}申請進度 · Formosa Founders House{% endblock %}
+{% block robots %}noindex,nofollow{% endblock %}
+{% block content %}
+<section class="status-shell">
+  <div class="status-heading">
+    <p class="eyebrow">PRIVATE APPLICATION STATUS · 私密進度</p>
+    <h1>{{ application.full_name }}，<br><em>我們收到你的申請了。</em></h1>
+    <p>{{ application_kinds[application.kind].title }} · 送出於 {{ application.created_at|datetime_local }}</p>
+  </div>
+
+  <div class="status-grid">
+    <section class="status-card major">
+      <div class="status-topline">
+        <span class="status-pill status-{{ application.status }}">{{ status_labels[application.status] }}</span>
+        <span class="application-id">#{{ application.id[:8].upper() }}</span>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item done"><i></i><div><strong>申請已送出</strong><span>{{ application.created_at|datetime_local }}</span></div></div>
+        <div class="timeline-item {{ 'done' if application.status != 'submitted' else 'current' }}"><i></i><div><strong>House team 審核</strong><span>{{ '已開始審核' if application.status != 'submitted' else '等待工作人員開啟申請' }}</span></div></div>
+        {% if application.interview_required %}
+          <div class="timeline-item {{ 'done' if application.status in ('interview_completed','approved','rejected') else ('current' if application.status == 'interview_scheduled' else '') }}"><i></i><div><strong>面試</strong><span>{% if interview %}{{ interview.scheduled_at|datetime_local }} · {{ interview.location }}{% else %}通過初審後安排{% endif %}</span></div></div>
+        {% endif %}
+        <div class="timeline-item {{ 'done' if application.status in ('approved','rejected') else '' }}"><i></i><div><strong>最終決定</strong><span>{% if application.status in ('approved','rejected') %}{{ status_labels[application.status] }} · {{ application.decided_at|datetime_local }}{% else %}完成所有必要流程後公布{% endif %}</span></div></div>
+      </div>
+      {% if application.applicant_message %}
+        <div class="decision-message"><span>HOUSE TEAM</span><p>{{ application.applicant_message }}</p></div>
+      {% endif %}
+    </section>
+
+    <aside class="status-side">
+      <section class="status-card access-card">
+        <p class="card-kicker">DOOR ACCESS · 門禁</p>
+        {% if revealed_pin and pin %}
+          <h2>{{ '臨時 PIN 已啟用' if pin_is_current else '臨時 PIN 已排程' }}</h2>
+          <div class="pin-display" aria-label="Temporary door PIN">{{ revealed_pin }}</div>
+          <p>{{ pin.valid_from|datetime_local }}<br>至 {{ pin.valid_until|datetime_local }}</p>
+          <div class="security-note">只限本人與核准時段使用，請勿轉傳。</div>
+        {% elif application.status == 'approved' %}
+          <h2>申請已通過</h2>
+          <p>House team 尚未發出門禁 PIN；發出後會顯示在這裡。</p>
+        {% elif application.status == 'rejected' %}
+          <h2>本次沒有門禁權限</h2>
+          <p>若有問題，請直接聯絡 Formosa House team。</p>
+        {% else %}
+          <h2>審核通過後提供</h2>
+          <p>若這次行程需要門禁，臨時 PIN 會在核准後顯示於此。</p>
+        {% endif %}
+      </section>
+      <section class="status-card save-link-card">
+        <strong>保存這個頁面</strong>
+        <p>這個網址就是你的私密查詢憑證。請加入書籤，不要公開分享。</p>
+      </section>
+    </aside>
+  </div>
+</section>
+{% endblock %}

@@ -10,3 +10,13 @@
 .vscode/
 .idea/
 *.swp
+
+# local Python / Schlage credentials
+.venv/
+.env
+.neon
+__pycache__/
+*.pyc
+instance/
+.vercel
+.env*.local

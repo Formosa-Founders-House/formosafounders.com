@@ -10,7 +10,7 @@
   --maxw: 1180px;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
 
 body {
   background: var(--surface);
@@ -39,7 +39,11 @@ body::after { display: none; }
 
 /* Navigation */
 .nav-wrap {
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
   padding: 0;
   background: rgba(248, 246, 240, 0.94);
   border-bottom: 1px solid rgba(21, 21, 21, 0.14);
@@ -62,6 +66,13 @@ body::after { display: none; }
 
 .brand { gap: 10px; color: var(--ink); }
 .brand svg { width: 30px; height: 30px; }
+.brand-logo {
+  width: 52px;
+  height: 52px;
+  flex: none;
+  object-fit: cover;
+  border-radius: 5px;
+}
 .brand-name {
   font-family: inherit;
   font-size: 0.98rem;
@@ -698,6 +709,9 @@ body::after { display: none; }
 
 footer { padding: 34px 0; background: #111; color: rgba(255,255,255,.58); }
 .foot .fb { color: #fff; font-family: inherit; font-weight: 650; }
+.footer-logo { width: 72px; height: 72px; object-fit: cover; border-radius: 5px; }
+.foot-legal { display: flex; gap: 18px; }
+.foot-legal a { color: inherit; text-decoration: none; }
 .foot small { font-size: .78rem; }
 
 @media (max-width: 900px) {
@@ -735,6 +749,7 @@ footer { padding: 34px 0; background: #111; color: rgba(255,255,255,.58); }
   .nav { width: 100%; max-width: none; min-height: 64px; margin: 0; padding: 0 20px; gap: 12px; }
   .brand { min-width: 0; }
   .brand svg { width: 28px; height: 28px; }
+  .brand-logo { width: 44px; height: 44px; }
   .brand-name { font-size: .86rem; white-space: nowrap; }
   .brand-name small { display: none; }
   .nav-cta { display: inline-flex; min-height: 38px; padding: 8px 14px; font-size: .8rem; }

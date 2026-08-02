@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}{{ event.name }} · 活動報名{% endblock %}
+{% block robots %}noindex,nofollow{% endblock %}
+{% block content %}
+<section class="event-registration-shell">
+  <header class="event-registration-intro">
+    <a class="back-link" href="{{ url_for('public_events') }}">← 所有活動</a>
+    <p class="eyebrow">EVENT REGISTRATION</p>
+    <h1>{{ event.name }}</h1>
+    <div class="event-fixed-details">
+      <div><span>開始</span><strong>{{ event.starts_at|datetime_local }}</strong></div>
+      <div><span>結束</span><strong>{{ event.ends_at|datetime_local }}</strong></div>
+    </div>
+    {% if event.description %}<p class="event-description">{{ event.description }}</p>{% endif %}
+  </header>
+
+  <div class="event-registration-panel">
+    {% if existing %}
+      <p class="eyebrow">ALREADY REGISTERED</p>
+      <h2>你已經報名過了。</h2>
+      <p>不需要再次填寫，可以直接查看審核進度。</p>
+      <a class="primary-action" href="{{ url_for('application_status', token=existing.public_token) }}">查看申請進度 →</a>
+    {% elif not registration_open %}
+      <p class="eyebrow">REGISTRATION CLOSED</p>
+      <h2>這個活動目前未開放報名。</h2>
+      <a class="text-action" href="{{ url_for('public_events') }}">查看其他活動 →</a>
+    {% else %}
+      {% if errors %}
+        <div class="error-summary" role="alert"><strong>請確認以下資料：</strong><ul>{% for error in errors %}<li>{{ error }}</li>{% endfor %}</ul></div>
+      {% endif %}
+      {% if current_user %}
+        <p class="eyebrow">ONE-CLICK REGISTRATION</p>
+        <h2>確認報名資料</h2>
+        <dl class="registration-profile">
+          <div><dt>姓名</dt><dd>{{ current_user.full_name or '尚未填寫' }}</dd></div>
+          <div><dt>Email</dt><dd>{{ current_user.email }}</dd></div>
+          {% if current_user.phone %}<div><dt>電話</dt><dd>{{ current_user.phone }}</dd></div>{% endif %}
+        </dl>
+        {% if current_user.full_name %}
+          <form method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <button class="primary-action full" type="submit">確認報名 {{ event.name }} →</button>
+          </form>
+        {% else %}
+          <a class="primary-action" href="{{ url_for('user_profile') }}">先完成基本資料 →</a>
+        {% endif %}
+        <p class="privacy-note">活動名稱與時間已由 House team 設定，送出後無法自行變更。</p>
+      {% else %}
+        <div class="account-notice">
+          <div><strong>登入後一鍵完成</strong><span>使用已保存的基本資料，不必再次填表。</span></div>
+          <a class="secondary-action" href="{{ url_for('google_login', next=request.path) }}">使用 Google 登入</a>
+        </div>
+        <h2>或填寫基本資料</h2>
+        <form method="post" class="application-form">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <div class="field-grid two">
+            <label>姓名<span>Required</span><input name="full_name" autocomplete="name" required value="{{ values.get('full_name', '') }}"></label>
+            <label>Email<span>Required</span><input type="email" name="email" autocomplete="email" required value="{{ values.get('email', '') }}"></label>
+          </div>
+          <div class="field-grid two">
+            <label>電話／WhatsApp<input name="phone" autocomplete="tel" value="{{ values.get('phone', '') }}"></label>
+            <label>LinkedIn／個人網站<input type="url" name="social_url" placeholder="https://" value="{{ values.get('social_url', '') }}"></label>
+          </div>
+          <button class="primary-action" type="submit">送出活動報名 →</button>
+        </form>
+      {% endif %}
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

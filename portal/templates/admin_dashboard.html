@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}審核總覽 · Formosa House{% endblock %}
+{% block robots %}noindex,nofollow{% endblock %}
+{% block body_class %}admin-body{% endblock %}
+{% block content %}
+<section class="admin-shell">
+  <header class="admin-heading">
+    <div><p class="eyebrow">HOUSE OPERATIONS</p><h1>申請審核總覽</h1></div>
+    <div class="admin-heading-actions">
+      <a class="secondary-action" href="{{ url_for('admin_events') }}">活動管理</a>
+      <a class="secondary-action" href="{{ url_for('apply_index') }}">開啟申請頁 ↗</a>
+    </div>
+  </header>
+
+  <div class="metric-row">
+    <div><span>待處理</span><strong>{{ counts.get('submitted', 0) }}</strong></div>
+    <div><span>審核中</span><strong>{{ counts.get('under_review', 0) }}</strong></div>
+    <div><span>等待面試</span><strong>{{ counts.get('interview_scheduled', 0) }}</strong></div>
+    <div><span>已通過</span><strong>{{ counts.get('approved', 0) }}</strong></div>
+  </div>
+
+  <form class="filter-bar" method="get">
+    <label>類型
+      <select name="kind">
+        <option value="">全部</option>
+        {% for key, kind in application_kinds.items() %}<option value="{{ key }}" {{ 'selected' if selected_kind == key }}>{{ kind.title }}</option>{% endfor %}
+      </select>
+    </label>
+    <label>狀態
+      <select name="status">
+        <option value="">全部</option>
+        {% for key, label in status_labels.items() %}<option value="{{ key }}" {{ 'selected' if selected_status == key }}>{{ label }}</option>{% endfor %}
+      </select>
+    </label>
+    <button type="submit">篩選</button>
+    <a href="{{ url_for('admin_dashboard') }}">清除</a>
+  </form>
+
+  <div class="application-table-wrap">
+    <table class="application-table">
+      <thead><tr><th>申請人</th><th>類型</th><th>行程</th><th>狀態</th><th>送出時間</th><th></th></tr></thead>
+      <tbody>
+        {% for item in applications %}
+          <tr>
+            <td><strong>{{ item.full_name }}</strong><span>{{ item.email }}</span></td>
+            <td>{{ application_kinds[item.kind].title }}</td>
+            <td>{{ item.requested_start|datetime_local }}<span>→ {{ item.requested_end|datetime_local }}</span></td>
+            <td><span class="status-pill status-{{ item.status }}">{{ status_labels[item.status] }}</span></td>
+            <td>{{ item.created_at|datetime_local }}</td>
+            <td><a class="row-link" href="{{ url_for('admin_application', application_id=item.id) }}">查看 →</a></td>
+          </tr>
+        {% else %}
+          <tr><td colspan="6" class="empty-state">目前沒有符合條件的申請。</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

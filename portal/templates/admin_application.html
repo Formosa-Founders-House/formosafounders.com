@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% block title %}{{ application.full_name }} · 申請審核{% endblock %}
+{% block robots %}noindex,nofollow{% endblock %}
+{% block body_class %}admin-body{% endblock %}
+{% block content %}
+<section class="admin-shell detail-shell">
+  <a class="back-link" href="{{ url_for('admin_dashboard') }}">← 回到審核總覽</a>
+  <header class="detail-heading">
+    <div>
+      <p class="eyebrow">{{ application_kinds[application.kind].english }}</p>
+      <h1>{{ application.full_name }}</h1>
+      <p>{{ application.email }}{% if application.phone %} · {{ application.phone }}{% endif %}</p>
+    </div>
+    <span class="status-pill large status-{{ application.status }}">{{ status_labels[application.status] }}</span>
+  </header>
+
+  <div class="detail-grid">
+    <div class="detail-main">
+      <section class="admin-card">
+        <div class="section-heading"><h2>申請內容</h2><span>#{{ application.id[:8].upper() }}</span></div>
+        <dl class="detail-list">
+          <div><dt>申請類型</dt><dd>{{ application_kinds[application.kind].title }}</dd></div>
+          {% if application.event_name %}<div><dt>活動</dt><dd>{{ application.event_name }}</dd></div>{% endif %}
+          <div><dt>申請時段</dt><dd>{{ application.requested_start|datetime_local }}<br>至 {{ application.requested_end|datetime_local }}</dd></div>
+          {% if application.social_url %}<div><dt>個人連結</dt><dd><a href="{{ application.social_url }}" target="_blank" rel="noopener">{{ application.social_url }}</a></dd></div>{% endif %}
+          {% if application.referral %}<div><dt>介紹來源</dt><dd>{{ application.referral }}</dd></div>{% endif %}
+          {% if application.sponsor_profile_id %}<div><dt>房客好友確認</dt><dd>{{ '已批准 · ' ~ (application.sponsor_approved_at|datetime_local) if application.sponsor_approved_at else '等待房客批准' }}</dd></div>{% endif %}
+        </dl>
+        <div class="answer-block"><span>申請原因</span><p>{{ application.purpose }}</p></div>
+        {% if application.background %}<div class="answer-block"><span>目前背景</span><p>{{ application.background }}</p></div>{% endif %}
+      </section>
+
+      {% if application.interview_required %}
+      <section class="admin-card">
+        <div class="section-heading"><h2>面試流程</h2><span>Required</span></div>
+        {% if not interview or interview.status != 'completed' %}
+          <form method="post" action="{{ url_for('admin_schedule_interview', application_id=application.id) }}" class="compact-form">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <div class="field-grid two">
+              <label>面試時間<input type="datetime-local" name="scheduled_at" required></label>
+              <label>地點／會議連結<input name="location" required value="{{ interview.location if interview else '' }}"></label>
+            </div>
+            <label>面試人<input name="interviewer" value="{{ interview.interviewer if interview else session.admin_email }}"></label>
+            <button class="secondary-action" type="submit">{{ '更新面試' if interview else '安排面試' }}</button>
+          </form>
+        {% endif %}
+        {% if interview %}
+          <div class="interview-summary"><strong>{{ interview.scheduled_at|datetime_local }}</strong><span>{{ interview.location }} · {{ interview.status }}</span></div>
+          {% if interview.status != 'completed' %}
+          <form method="post" action="{{ url_for('admin_complete_interview', application_id=application.id) }}" class="compact-form top-rule">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <label>面試紀錄<textarea name="notes" rows="4" placeholder="只提供管理員查看"></textarea></label>
+            <button class="primary-action small" type="submit">標記面試完成</button>
+          </form>
+          {% else %}<div class="completed-note">面試已完成：{{ interview.notes or '未留下備註' }}</div>{% endif %}
+        {% endif %}
+      </section>
+      {% endif %}
+
+      <section class="admin-card">
+        <div class="section-heading"><h2>最終決定</h2><span>Applicant can see result</span></div>
+        <form method="post" action="{{ url_for('admin_decision', application_id=application.id) }}" class="compact-form">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <label>給申請人的訊息<textarea name="applicant_message" rows="4">{{ application.applicant_message }}</textarea></label>
+          <label>內部備註<textarea name="admin_notes" rows="3">{{ application.admin_notes }}</textarea></label>
+          <div class="decision-actions">
+            <button class="approve-action" name="decision" value="approved" type="submit" {{ 'disabled' if not can_approve_now }}>核准申請</button>
+            <button class="reject-action" name="decision" value="rejected" type="submit">拒絕申請</button>
+          </div>
+          {% if not can_approve_now and application.interview_required %}<p class="form-hint">完成面試後才能核准。</p>{% endif %}
+        </form>
+      </section>
+    </div>
+
+    <aside class="detail-side">
+      <section class="admin-card action-card">
+        <h2>審核操作</h2>
+        {% if application.status not in ('approved','rejected','withdrawn') %}
+          <form method="post" action="{{ url_for('admin_review', application_id=application.id) }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <button class="secondary-action full" type="submit">標記為審核中</button>
+          </form>
+        {% endif %}
+        <a class="private-link" href="{{ url_for('application_status', token=application.public_token) }}" target="_blank">預覽申請人狀態頁 ↗</a>
+      </section>
+
+      <section class="admin-card pin-card-admin">
+        <div class="section-heading"><h2>臨時門禁</h2><span>Schlage</span></div>
+        {% set active_pins = pins|selectattr('status', 'equalto', 'active')|list %}
+        {% if active_pins %}
+          {% for pin in active_pins %}
+            <div class="active-pin-summary"><strong>{{ pin.access_code_name }}</strong><span>{{ pin.valid_from|datetime_local }} → {{ pin.valid_until|datetime_local }}</span></div>
+            <form method="post" action="{{ url_for('admin_revoke_pin', application_id=application.id, pin_id=pin.id) }}">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+              <button class="reject-action full" type="submit">立即撤銷 PIN</button>
+            </form>
+          {% endfor %}
+        {% elif application.status == 'approved' %}
+          <form method="post" action="{{ url_for('admin_issue_pin', application_id=application.id) }}" class="compact-form">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <label>開始時間<input type="datetime-local" name="valid_from" required value="{{ application.requested_start[:16] if application.requested_start else '' }}"></label>
+            <label>結束時間<input type="datetime-local" name="valid_until" required value="{{ application.requested_end[:16] if application.requested_end else '' }}"></label>
+            <button class="primary-action small full" type="submit">建立臨時 PIN</button>
+          </form>
+        {% else %}
+          <p class="muted">核准申請後才可建立門禁 PIN。</p>
+        {% endif %}
+      </section>
+
+      <section class="admin-card audit-card">
+        <h2>活動紀錄</h2>
+        <ol>{% for event in events %}<li><i></i><div><strong>{{ event.event_type }}</strong><span>{{ event.created_at|datetime_local }}<br>{{ event.actor }}</span></div></li>{% endfor %}</ol>
+      </section>
+    </aside>
+  </div>
+</section>
+{% endblock %}

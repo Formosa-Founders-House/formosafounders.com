@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}找不到頁面 · Formosa Founders House{% endblock %}
+{% block robots %}noindex,nofollow{% endblock %}
+{% block body_class %}not-found-body{% endblock %}
+{% block content %}
+<section class="not-found-page">
+  <div class="not-found-code" aria-hidden="true">404</div>
+  <div class="not-found-copy">
+    <p class="eyebrow">PAGE NOT FOUND</p>
+    <h1>這扇門，<br><em>目前打不開。</em></h1>
+    <p>你要找的頁面可能已經移動、過期，或網址輸入錯誤。</p>
+    <div class="not-found-actions">
+      <a class="primary-action" href="{{ url_for('landing') }}">回到首頁</a>
+      <a class="text-action" href="{{ url_for('apply_index') }}">查看申請方式 →</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
