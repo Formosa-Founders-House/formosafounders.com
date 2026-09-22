@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Formosa Founders House — the home and harbor for Taiwanese founders in San Francisco</title>
-<meta name="description" content="A hacker house in San Francisco's Lower Haight where Taiwanese startup founders live, build, and belong. Live with YC and 500 Global founders. Rent USD 1,500–2,000/mo.">
+<meta name="description" content="A hacker house in San Francisco's Lower Haight where Taiwanese startup founders live, build, and belong. Live with YC and 500 Global founders.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Ccircle cx='17' cy='17' r='16' fill='%2323283b'/%3E%3Cpath d='M12.5 21v-6l4.5-4 4.5 4v6Z' fill='%23fdf4e3'/%3E%3Crect x='15.7' y='17.2' width='2.6' height='3.8' fill='%23cf4526'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -194,20 +194,23 @@
   .charter p { font-family: "Noto Serif TC", serif; font-size: 0.96rem; line-height: 1.85; color: var(--ink-soft); }
   .charter p .en { font-family: "Hanken Grotesk", sans-serif; font-style: italic; font-weight: 600; color: var(--gold-deep); }
 
-  /* =================== 陸 · RENT & LOCATION (framed notice) =================== */
-  .notice { position: relative; background: #fdf6e4; border: 1px solid rgba(35,40,59,.32); display: grid; grid-template-columns: 1.12fr 1fr; }
-  .notice::before { content: ""; position: absolute; inset: 7px; border: 1px solid var(--hairline-soft); pointer-events: none; }
-  .notice > div { padding: clamp(34px, 4.5vw, 58px); }
-  .notice-loc { border-left: 1px solid var(--hairline); }
-  .notice .lbl { font-weight: 700; font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--cinnabar-deep); }
-  .notice .price { font-family: "Fraunces", serif; font-weight: 600; font-size: clamp(2.3rem, 4.2vw, 3.4rem); line-height: 1.05; letter-spacing: -0.02em; margin: 16px 0 8px; }
-  .notice .price small { display: block; font-family: "Hanken Grotesk", sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); margin-top: 10px; }
-  .notice .note { font-size: 0.99rem; line-height: 1.75; color: var(--ink-soft); max-width: 46ch; margin-top: 12px; }
-  .notice ul { list-style: none; margin-top: 24px; display: grid; gap: 10px; }
-  .notice li { display: flex; gap: 13px; font-weight: 500; font-size: 0.97rem; color: var(--ink); }
-  .notice li::before { content: "—"; color: var(--cinnabar); flex: none; }
-  .notice .loc-name { font-family: "Fraunces", serif; font-weight: 600; font-size: clamp(1.9rem, 3vw, 2.6rem); letter-spacing: -0.015em; margin: 14px 0 4px; }
-  .notice .loc-line { margin-top: 26px; font-weight: 700; font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); line-height: 2; }
+  /* =================== 陸 · LOCATION / 柒 · EVENTS =================== */
+  .loc-line { font-weight: 700; font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); line-height: 2.1; }
+
+  /* ---------- dark chapter (events) ---------- */
+  .chapter-dark { background: linear-gradient(180deg, #14161f 0%, #1b1410 100%); color: var(--cream); }
+  .chapter-dark .ch-no { border-color: #ff684a; color: #ff684a; }
+  .chapter-dark .ch-title { color: var(--cream); }
+  .chapter-dark .ch-zh { color: rgba(253, 244, 227, 0.58); }
+  .chapter-dark .ch-rule { background: rgba(255, 255, 255, 0.24); }
+  .chapter-dark .ch-h2 { color: var(--cream); }
+
+  /* ---------- luma events embed ---------- */
+  .luma-embed { border: 1px solid rgba(255, 255, 255, 0.24); background: rgba(255, 255, 255, 0.03); padding: 10px; }
+  .luma-embed iframe { display: block; width: 100%; height: 560px; border: 0; }
+  .luma-link { margin-top: 24px; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; }
+  .luma-link a { display: inline-flex; align-items: center; gap: 9px; color: #ff684a; text-decoration: none; border-bottom: 1px solid rgba(255, 104, 74, 0.5); padding-bottom: 4px; }
+  .luma-link a:hover { border-bottom-color: #ff684a; }
 
   /* =================== CONNECT (night — the light is on) =================== */
   .connect { position: relative; color: var(--cream); text-align: center; min-height: 88vh; display: flex; align-items: center; padding: clamp(100px, 14vh, 170px) 0; overflow: hidden; }
@@ -252,8 +255,6 @@
     .charter .rule { padding-left: 0; padding-right: 0; }
     .charter .rule:nth-child(even) { border-left: none; }
     .charter .rule:nth-child(n+2) { border-top: 1px solid var(--hairline); }
-    .notice { grid-template-columns: 1fr; }
-    .notice-loc { border-left: none; border-top: 1px solid var(--hairline); }
     .connect { min-height: 72vh; }
   }
   @media (max-width: 560px) {
@@ -274,6 +275,8 @@
     .hero-foot { padding: 0 20px 18px; }
     .scroll-cue { padding: 10px 15px; }
     .chapter { padding: 72px 0; }
+    .luma-embed { padding: 7px; }
+    .luma-embed iframe { height: 460px; }
     .ch-what { padding-top: 82px; }
     .ch-head { gap: 10px; margin-bottom: 30px; }
     .ch-h2 { font-size: clamp(2rem, 10vw, 2.6rem); margin-bottom: 34px; }
@@ -284,7 +287,6 @@
     .daily-item h4 { flex-wrap: wrap; gap: 6px 12px; }
     .charter .rule { gap: 14px; }
     .charter .num { width: 1.2em; }
-    .notice > div { padding: 34px 28px; }
     .connect { min-height: auto; padding: 96px 0; }
     .connect-kicker { letter-spacing: 0.2em; }
     .connect .invite { margin: 24px auto 30px; }
@@ -314,7 +316,7 @@
         <li><a href="#offer">What we offer</a></li>
         <li><a href="#community">Community</a></li>
         <li><a href="#rules">House rules</a></li>
-        <li><a href="#details">Rent</a></li>
+        <li><a href="#events">Events</a></li>
       </ul>
       <a class="nav-cta" href="/apply">Apply</a>
     </nav>
@@ -522,33 +524,39 @@
     </div>
   </section>
 
-  <!-- ============ 陸 · RENT & LOCATION ============ -->
+  <!-- ============ 陸 · LOCATION ============ -->
   <section class="chapter" id="details">
     <div class="container">
       <header class="ch-head reveal">
         <span class="ch-no" aria-hidden="true">06</span>
-        <span class="ch-title">Rent &amp; location</span>
-        <span class="ch-zh" lang="zh-Hant">租金與地點</span>
+        <span class="ch-title">Location</span>
+        <span class="ch-zh" lang="zh-Hant">地點</span>
         <span class="ch-rule" aria-hidden="true"></span>
       </header>
-      <div class="notice reveal">
-        <div>
-          <span class="lbl">Rent · 租金</span>
-          <p class="price">USD 1,500–2,000<small>per month · 月</small></p>
-          <p class="note">Our goal is to create a living environment that lets founders focus fully on their work. Rent includes shared services, finalized with incoming residents.</p>
-          <ul>
-            <li>Regular professional cleaning</li>
-            <li>Shared house services &amp; utilities</li>
-            <li>A founder community, built in</li>
-          </ul>
-        </div>
-        <div class="notice-loc">
-          <span class="lbl">Location · 地點</span>
-          <p class="loc-name">Lower Haight</p>
-          <p class="note">Walking distance to Duboce Park, Castro, and Hayes Valley. Easy Muni access to SoMa, Mission, and Downtown SF.</p>
-          <p class="loc-line">Duboce Park · Castro · Hayes Valley<br>Muni → SoMa · Mission · Downtown</p>
-        </div>
+      <h2 class="ch-h2 reveal">Lower Haight.</h2>
+      <div class="what-grid">
+        <p class="what-lead reveal">Walking distance to Duboce Park, Castro, and Hayes Valley — with easy Muni access to <em>SoMa, Mission, and Downtown SF.</em></p>
+        <p class="loc-line reveal d1">Duboce Park · Castro · Hayes Valley<br>Muni → SoMa · Mission · Downtown</p>
       </div>
+    </div>
+  </section>
+
+  <!-- ============ 柒 · EVENTS ============ -->
+  <section class="chapter chapter-dark" id="events">
+    <div class="container">
+      <header class="ch-head reveal">
+        <span class="ch-no" aria-hidden="true">07</span>
+        <span class="ch-title">Events</span>
+        <span class="ch-zh" lang="zh-Hant">活動</span>
+        <span class="ch-rule" aria-hidden="true"></span>
+      </header>
+      <h2 class="ch-h2 reveal">Come by before you move in.</h2>
+      <div class="luma-embed reveal">
+        <iframe src="https://lu.ma/embed/calendar/cal-i209gn0cbgXFpGB/events" title="Formosa Founders House events calendar on Luma" loading="lazy" allowfullscreen></iframe>
+      </div>
+      <p class="luma-link reveal d1"><a href="https://luma.com/ffh" target="_blank" rel="noopener">See the full calendar on Luma
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a></p>
     </div>
   </section>
 

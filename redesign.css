@@ -234,6 +234,7 @@ body::after { display: none; }
 
 #offer, #rules { background: var(--surface-light); }
 #details { background: #e8e3da; }
+#events { background: linear-gradient(180deg, #14161f 0%, #1b1410 100%); border-bottom: 0; color: var(--cream); }
 
 .ch-head {
   display: grid;
@@ -669,25 +670,11 @@ body::after { display: none; }
 .charter p .en { color: var(--ink); font-family: inherit; font-style: normal; font-weight: 600; }
 
 /* Details */
-.notice {
-  grid-template-columns: 1fr 1fr;
-  background: transparent;
-  border: 1px solid var(--ink);
-}
+.loc-line { font-size: .68rem; letter-spacing: .1em; color: var(--muted); }
 
-.notice::before { display: none; }
-.notice > div { padding: clamp(36px, 5vw, 64px); }
-.notice-loc { border-color: var(--ink); }
-.notice .lbl { color: var(--accent); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; }
-.notice .price { margin: 28px 0 12px; font-family: inherit; font-size: clamp(2.6rem, 5vw, 4.3rem); font-weight: 650; line-height: .95; letter-spacing: -0.055em; }
-.notice .price small { margin-top: 14px; font-family: inherit; font-size: .68rem; letter-spacing: .12em; }
-.notice .note { color: var(--muted); }
-.notice ul { gap: 12px; }
-.notice li { font-size: .92rem; }
-.notice li::before { content: "•"; color: var(--accent); }
-.notice .loc-name { margin-top: 28px; font-family: inherit; font-size: clamp(2.5rem, 4.5vw, 4rem); font-weight: 650; letter-spacing: -0.05em; }
-.notice .loc-line { font-size: .66rem; letter-spacing: .1em; }
-
+/* Events */
+.luma-embed { padding: 12px; }
+.luma-embed iframe { height: 580px; }
 /* Connect + footer */
 .connect {
   min-height: 82vh;
@@ -806,10 +793,8 @@ footer { padding: 34px 0; background: #111; color: rgba(255,255,255,.58); }
   .who-cols article { padding: 28px 0; }
   .daily-item h4 { flex-wrap: wrap; }
   .charter .rule { gap: 10px; }
-  .notice { grid-template-columns: 1fr; }
-  .notice > div { padding: 38px 26px; }
-  .notice-loc { border-top: 1px solid var(--ink); border-left: 0; }
-  .notice .price { font-size: 2.8rem; }
+  .luma-embed { padding: 7px; }
+  .luma-embed iframe { height: 460px; }
   .connect { min-height: auto; padding: 104px 0; }
   .connect-bg {
     background-image: url("assets/connect-mobile-v2.webp");
