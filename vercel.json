@@ -1,4 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "regions": ["sin1"]
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/apply",
+      "destination": "https://reservation.chatbotta.com/book/e8fe70b8-93a0-48bb-a07f-bb902a5646ab/phone",
+      "permanent": false
+    }
+  ]
 }

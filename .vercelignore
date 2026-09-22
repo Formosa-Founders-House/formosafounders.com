@@ -1,13 +1,2 @@
-.env
-.env.local
-.neon
-.venv
 .git
-instance
-tests
-scripts
-PORTAL_README.md
-SCHLAGE_TESTING.md
-requirements-schlage.txt
-__pycache__
-*.pyc
+.vercel
