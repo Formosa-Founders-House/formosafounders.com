@@ -645,9 +645,9 @@ body::after { display: none; }
 .daily-grid { grid-template-columns: minmax(340px, .8fr) minmax(0, 1.2fr); gap: clamp(48px, 7vw, 92px); }
 .daily-grid .plate-img { aspect-ratio: 4 / 3; }
 .daily-item { padding: 24px 0; border-color: var(--line); }
-.daily-item h4 { margin-bottom: 10px; }
-.daily-item h4 .tc { font-family: "Noto Sans TC", sans-serif; font-size: 1.08rem; font-weight: 650; }
-.daily-item h4 .en { color: var(--accent); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; }
+.daily-item h3 { margin-bottom: 10px; font-size: 1em; }
+.daily-item h3 .tc { font-family: "Noto Sans TC", sans-serif; font-size: 1.08rem; font-weight: 650; }
+.daily-item h3 .en { color: var(--accent); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; }
 .daily-item p { color: var(--muted); font-family: "Noto Sans TC", sans-serif; font-size: 0.91rem; line-height: 1.75; }
 
 /* Rules */
@@ -665,7 +665,7 @@ body::after { display: none; }
   line-height: 1.5;
 }
 
-.charter h4 { margin-bottom: 12px; font-family: inherit; font-size: 1.45rem; font-weight: 650; }
+.charter h3 { margin-bottom: 12px; font-family: inherit; font-size: 1.45rem; font-weight: 650; }
 .charter p { color: var(--muted); font-family: "Noto Sans TC", sans-serif; font-size: 0.92rem; line-height: 1.8; }
 .charter p .en { color: var(--ink); font-family: inherit; font-style: normal; font-weight: 600; }
 
@@ -791,7 +791,7 @@ footer { padding: 34px 0; background: #111; color: rgba(255,255,255,.58); }
   .int-kicker { margin-bottom: 30px; }
   .int-quote { margin-bottom: 50px; font-size: clamp(2.8rem, 13vw, 4rem); }
   .who-cols article { padding: 28px 0; }
-  .daily-item h4 { flex-wrap: wrap; }
+  .daily-item h3 { flex-wrap: wrap; }
   .charter .rule { gap: 10px; }
   .luma-embed { padding: 7px; }
   .luma-embed iframe { height: 460px; }
