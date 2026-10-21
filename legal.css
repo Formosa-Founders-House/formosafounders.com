@@ -12,7 +12,7 @@ body {
   min-height: 100vh;
   color: var(--ink);
   background: var(--cream);
-  font-family: "Instrument Sans", "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: -.01em;

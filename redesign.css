@@ -15,14 +15,13 @@ html { scroll-behavior: smooth; scroll-padding-top: 76px; }
 body {
   background: var(--surface);
   color: var(--ink);
-  font-family: "Instrument Sans", "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: -0.01em;
 }
 
 body::after { display: none; }
-:lang(zh), .tc { font-family: "Noto Sans TC", "Instrument Sans", sans-serif; }
 
 .container {
   width: min(100%, var(--maxw));
@@ -238,7 +237,7 @@ body::after { display: none; }
 
 .ch-head {
   display: grid;
-  grid-template-columns: 44px auto auto 1fr;
+  grid-template-columns: 44px auto 1fr;
   gap: 14px;
   margin-bottom: 50px;
   align-items: center;
@@ -263,13 +262,6 @@ body::after { display: none; }
   letter-spacing: 0.14em;
 }
 
-.ch-zh {
-  color: var(--muted);
-  font-family: "Noto Sans TC", sans-serif;
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-}
 
 .ch-rule { min-width: 0; background: var(--line); }
 
@@ -312,9 +304,9 @@ body::after { display: none; }
   align-self: end;
 }
 
-.what-zh {
+.what-note {
   color: #4e4c47;
-  font-family: "Noto Sans TC", sans-serif;
+  font-family: inherit;
   font-size: 1rem;
   line-height: 1.9;
 }
@@ -332,12 +324,12 @@ body::after { display: none; }
 }
 
 .moments::before {
-  content: "日常";
+  content: "Life";
   position: absolute;
   top: clamp(64px, 7vw, 100px);
   right: max(-.12em, calc((100vw - var(--maxw)) / 2 - .55em));
   color: rgba(21, 21, 21, .045);
-  font-family: "Noto Sans TC", sans-serif;
+  font-family: inherit;
   font-size: clamp(10rem, 23vw, 22rem);
   font-weight: 700;
   line-height: .8;
@@ -483,7 +475,7 @@ body::after { display: none; }
 }
 
 .moment-card figcaption span:last-child {
-  font-family: "Noto Sans TC", sans-serif;
+  font-family: inherit;
   letter-spacing: .04em;
 }
 
@@ -527,7 +519,6 @@ body::after { display: none; }
 }
 
 .plate .pl-no { color: var(--accent); }
-.plate .pl-zh { font-family: "Noto Sans TC", sans-serif; font-size: 0.76rem; }
 
 .manifest li {
   grid-template-columns: 38px 1fr;
@@ -553,7 +544,7 @@ body::after { display: none; }
 
 .manifest p {
   color: var(--muted);
-  font-family: "Noto Sans TC", sans-serif;
+  font-family: inherit;
   font-size: 0.9rem;
   line-height: 1.7;
 }
@@ -579,7 +570,6 @@ body::after { display: none; }
   letter-spacing: 0.14em;
 }
 
-.int-kicker .tc { color: rgba(255,255,255,.58); font-size: 0.78rem; letter-spacing: 0.05em; }
 .int-kicker::after { background: var(--line-light); }
 
 .int-quote {
@@ -600,7 +590,7 @@ body::after { display: none; }
   padding: 26px 34px 0;
   border-color: var(--line-light);
   color: rgba(255,255,255,.74);
-  font-family: "Noto Sans TC", sans-serif;
+  font-family: inherit;
   font-size: 0.9rem;
   line-height: 1.8;
   text-shadow: none;
@@ -629,14 +619,14 @@ body::after { display: none; }
 .who-cols article:first-child { padding-top: 34px; }
 .who-cols h3 {
   margin-bottom: 16px;
-  font-family: "Noto Sans TC", sans-serif;
+  font-family: inherit;
   font-size: 1.25rem;
   font-weight: 650;
 }
 
 .who-cols p {
   color: var(--muted);
-  font-family: "Noto Sans TC", sans-serif;
+  font-family: inherit;
   font-size: 0.92rem;
   line-height: 1.8;
 }
@@ -645,10 +635,8 @@ body::after { display: none; }
 .daily-grid { grid-template-columns: minmax(340px, .8fr) minmax(0, 1.2fr); gap: clamp(48px, 7vw, 92px); }
 .daily-grid .plate-img { aspect-ratio: 4 / 3; }
 .daily-item { padding: 24px 0; border-color: var(--line); }
-.daily-item h3 { margin-bottom: 10px; font-size: 1em; }
-.daily-item h3 .tc { font-family: "Noto Sans TC", sans-serif; font-size: 1.08rem; font-weight: 650; }
-.daily-item h3 .en { color: var(--accent); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; }
-.daily-item p { color: var(--muted); font-family: "Noto Sans TC", sans-serif; font-size: 0.91rem; line-height: 1.75; }
+.daily-item h3 { margin-bottom: 10px; font-size: 1.08rem; font-weight: 650; }
+.daily-item p { color: var(--muted); font-family: inherit; font-size: 0.91rem; line-height: 1.75; }
 
 /* Rules */
 .charter { border-color: var(--line); }
@@ -666,7 +654,7 @@ body::after { display: none; }
 }
 
 .charter h3 { margin-bottom: 12px; font-family: inherit; font-size: 1.45rem; font-weight: 650; }
-.charter p { color: var(--muted); font-family: "Noto Sans TC", sans-serif; font-size: 0.92rem; line-height: 1.8; }
+.charter p { color: var(--muted); font-family: inherit; font-size: 0.92rem; line-height: 1.8; }
 .charter p .en { color: var(--ink); font-family: inherit; font-style: normal; font-weight: 600; }
 
 /* Details */
@@ -687,8 +675,8 @@ body::after { display: none; }
 .connect-kicker::before, .connect-kicker::after { display: none; }
 .connect h2 { font-family: inherit; font-size: clamp(3.5rem, 7vw, 6.5rem); font-weight: 650; line-height: .95; letter-spacing: -.06em; text-shadow: none; }
 .connect h2 em { color: #ff684a; font-style: normal; }
-.connect .zh-line { margin-top: 18px; color: rgba(255,255,255,.72); font-family: "Noto Sans TC", sans-serif; font-size: 1rem; letter-spacing: .08em; text-shadow: none; }
-.connect .invite { max-width: 36rem; margin: 28px 0 34px; color: rgba(255,255,255,.72); font-family: "Noto Sans TC", sans-serif; line-height: 1.8; text-shadow: none; }
+.connect .tagline { margin-top: 18px; color: rgba(255,255,255,.72); font-family: inherit; font-size: 1rem; letter-spacing: .08em; text-shadow: none; }
+.connect .invite { max-width: 36rem; margin: 28px 0 34px; color: rgba(255,255,255,.72); font-family: inherit; line-height: 1.8; text-shadow: none; }
 .connect-btns { justify-content: flex-start; gap: 10px; }
 .social { min-height: 50px; padding: 13px 22px; border-radius: 3px; font-family: inherit; font-size: .92rem; font-weight: 600; }
 .social:hover { background: #fff; color: var(--ink); }
@@ -763,7 +751,6 @@ footer { padding: 34px 0; background: #111; color: rgba(255,255,255,.58); }
   .chapter { padding: 80px 0; }
   .ch-what { padding-top: 80px; }
   .ch-head { grid-template-columns: 34px auto 1fr; gap: 10px; margin-bottom: 36px; }
-  .ch-zh { display: none; }
   .ch-title { font-size: .68rem; }
   .ch-h2 { margin-bottom: 38px; font-size: clamp(2.35rem, 12vw, 3.2rem); }
   .what-grid { gap: 42px; }

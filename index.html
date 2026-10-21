@@ -66,7 +66,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&amp;family=Noto+Sans+TC:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #23283b;
@@ -102,7 +102,6 @@
     overflow-x: hidden;
     position: relative;
   }
-  :lang(zh), .tc { font-family: "Noto Sans TC", sans-serif; }
   img, video { display: block; max-width: 100%; }
 
   /* ---- global film grain overlay (premium tactile texture) ---- */
@@ -172,9 +171,8 @@
 
   /* chapter heading: numbered seal + running title + rule to the margin */
   .ch-head { display: flex; align-items: center; gap: 14px; margin-bottom: clamp(34px, 4.5vw, 52px); }
-  .ch-no { flex: none; width: 33px; height: 33px; display: grid; place-items: center; border: 1px solid var(--cinnabar); border-radius: 2px; color: var(--cinnabar); font-family: "Noto Serif TC", serif; font-weight: 600; font-size: 0.95rem; }
+  .ch-no { flex: none; width: 33px; height: 33px; display: grid; place-items: center; border: 1px solid var(--cinnabar); border-radius: 2px; color: var(--cinnabar); font-weight: 600; font-size: 0.95rem; }
   .ch-title { font-weight: 700; font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink); white-space: nowrap; }
-  .ch-zh { font-family: "Noto Serif TC", serif; font-size: 0.9rem; letter-spacing: 0.14em; color: var(--ink-soft); white-space: nowrap; }
   .ch-rule { flex: 1; height: 1px; background: var(--hairline); min-width: 40px; }
 
   .ch-h2 { font-family: "Fraunces", serif; font-weight: 600; font-size: clamp(2.1rem, 4.2vw, 3.3rem); line-height: 1.06; letter-spacing: -0.02em; max-width: 22ch; margin-bottom: clamp(38px, 5vw, 58px); }
@@ -187,17 +185,16 @@
   .plate-img img { width: 100%; height: 100%; object-fit: cover; }
   .plate figcaption { display: flex; align-items: baseline; gap: 12px; margin-top: 13px; font-weight: 700; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); }
   .plate .pl-no { color: var(--cinnabar-deep); font-weight: 800; white-space: nowrap; }
-  .plate .pl-zh { font-family: "Noto Serif TC", serif; font-weight: 500; font-size: 0.86rem; text-transform: none; letter-spacing: 0.1em; margin-left: auto; white-space: nowrap; }
 
-  /* =================== 壹 · WHAT IS THIS PLACE =================== */
+  /* =================== WHAT IS THIS PLACE =================== */
   .ch-what { padding-top: clamp(100px, 15vh, 180px); }
   .what-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(36px, 6vw, 80px); align-items: start; }
   .what-lead { font-family: "Fraunces", serif; font-weight: 450; font-size: clamp(1.65rem, 2.9vw, 2.5rem); line-height: 1.32; letter-spacing: -0.01em; }
   .what-lead em { font-style: italic; font-weight: 600; color: var(--cinnabar); }
   .what-side { border-left: 1px solid var(--hairline); padding-left: clamp(20px, 2.4vw, 30px); }
-  .what-zh { font-family: "Noto Serif TC", serif; font-size: 1.02rem; line-height: 2.05; color: var(--ink-soft); }
+  .what-note { font-size: 1.02rem; line-height: 2.05; color: var(--ink-soft); }
 
-  /* =================== 貳 · WHAT WE OFFER (the manifest) =================== */
+  /* =================== WHAT WE OFFER (the manifest) =================== */
   .offer-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(36px, 5vw, 72px); align-items: start; }
   .offer-grid .plate-img { aspect-ratio: 3 / 4; }
   .offer-grid .plate-img img { object-position: 16% 50%; }
@@ -206,42 +203,39 @@
   .manifest li:last-child { border-bottom: 1px solid var(--hairline); }
   .manifest .m-no { font-family: "Fraunces", serif; font-style: italic; font-weight: 600; font-size: 1.02rem; color: var(--cinnabar-deep); padding-top: 4px; }
   .manifest h3 { font-family: "Fraunces", serif; font-weight: 600; font-size: clamp(1.18rem, 1.6vw, 1.34rem); letter-spacing: -0.01em; line-height: 1.25; }
-  .manifest p { font-family: "Noto Serif TC", serif; font-size: 0.95rem; line-height: 1.8; color: var(--ink-soft); margin-top: 5px; }
+  .manifest p { font-size: 0.95rem; line-height: 1.8; color: var(--ink-soft); margin-top: 5px; }
 
   /* =================== dusk interlude · WHY IT MATTERS =================== */
   .interlude { position: relative; color: var(--cream); padding: clamp(110px, 17vh, 200px) 0; overflow: hidden; }
   .interlude-bg { position: absolute; inset: 0; z-index: 0; background-image: url("assets/hero-bg.webp"); background-size: cover; background-position: center 30%; }
   .interlude-tint { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(15,17,32,.93) 0%, rgba(24,18,12,.72) 48%, rgba(14,14,27,.93) 100%); }
   .int-kicker { display: flex; align-items: center; gap: 14px; margin-bottom: clamp(30px, 4vw, 44px); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold); }
-  .int-kicker .tc { font-size: 0.9rem; letter-spacing: 0.14em; color: var(--espresso-soft); text-transform: none; font-weight: 500; }
   .int-kicker::after { content: ""; flex: 1; height: 1px; background: rgba(253,244,227,.25); }
   .int-quote { font-family: "Fraunces", serif; font-weight: 450; font-size: clamp(2rem, 4.4vw, 3.5rem); line-height: 1.22; letter-spacing: -0.015em; max-width: 19ch; margin-bottom: clamp(48px, 7vw, 78px); text-shadow: 0 2px 34px rgba(0,0,0,.45); }
   .int-quote em { font-style: italic; color: var(--gold); }
   .int-cols { display: grid; grid-template-columns: repeat(3, 1fr); }
-  .int-cols p { font-family: "Noto Serif TC", serif; font-size: 0.99rem; line-height: 1.95; color: #ece1cf; padding: 0 clamp(24px, 3vw, 44px); border-left: 1px solid rgba(253,244,227,.24); text-shadow: 0 1px 18px rgba(0,0,0,.5); }
+  .int-cols p { font-size: 0.99rem; line-height: 1.95; color: #ece1cf; padding: 0 clamp(24px, 3vw, 44px); border-left: 1px solid rgba(253,244,227,.24); text-shadow: 0 1px 18px rgba(0,0,0,.5); }
   .int-cols p:first-child { padding-left: 0; border-left: none; }
   .int-cols .n { display: block; font-size: 1.15rem; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 14px; }
 
-  /* =================== 參 · WHO THRIVES (three columns, ruled) =================== */
+  /* =================== WHO THRIVES (three columns, ruled) =================== */
   .who-cols { display: grid; grid-template-columns: repeat(3, 1fr); }
   .who-cols article { padding: 0 clamp(26px, 3.2vw, 46px); border-left: 1px solid var(--hairline); }
   .who-cols article:first-child { padding-left: 0; border-left: none; }
   .who-cols article:last-child { padding-right: 0; }
-  .who-cols h3 { font-family: "Noto Serif TC", serif; font-weight: 700; font-size: 1.3rem; letter-spacing: 0.02em; margin-bottom: 12px; }
-  .who-cols p { font-family: "Noto Serif TC", serif; font-size: 0.96rem; line-height: 1.9; color: var(--ink-soft); }
+  .who-cols h3 { font-weight: 700; font-size: 1.3rem; letter-spacing: 0.02em; margin-bottom: 12px; }
+  .who-cols p { font-size: 0.96rem; line-height: 1.9; color: var(--ink-soft); }
 
-  /* =================== 肆 · DAILY LIFE (ledger + plate) =================== */
+  /* =================== DAILY LIFE (ledger + plate) =================== */
   .daily-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(36px, 5vw, 72px); align-items: start; }
   .daily-grid .plate-img { aspect-ratio: 4 / 3; }
   .daily-items { display: grid; }
   .daily-item { padding: clamp(20px, 2.2vw, 26px) 0; border-top: 1px solid var(--hairline); }
   .daily-item:last-child { border-bottom: 1px solid var(--hairline); }
   .daily-item h3 { display: flex; align-items: baseline; gap: 14px; margin-bottom: 7px; }
-  .daily-item h3 .tc { font-family: "Noto Serif TC", serif; font-weight: 700; font-size: 1.22rem; }
-  .daily-item h3 .en { font-weight: 700; font-size: 0.66rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cinnabar-deep); }
-  .daily-item p { font-family: "Noto Serif TC", serif; font-size: 0.96rem; line-height: 1.85; color: var(--ink-soft); }
+  .daily-item p { font-size: 0.96rem; line-height: 1.85; color: var(--ink-soft); }
 
-  /* =================== 伍 · HOUSE RULES (the charter) =================== */
+  /* =================== HOUSE RULES (the charter) =================== */
   .charter { border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); display: grid; grid-template-columns: 1fr 1fr; }
   .charter .rule { display: flex; gap: clamp(18px, 2vw, 26px); padding: clamp(30px, 3.6vw, 48px) clamp(26px, 3.2vw, 46px); }
   .charter .rule:nth-child(odd) { padding-left: 0; }
@@ -249,17 +243,16 @@
   .charter .rule:nth-child(n+3) { border-top: 1px solid var(--hairline); }
   .charter .num { font-family: "Fraunces", serif; font-style: italic; font-weight: 600; font-size: clamp(2.2rem, 3.4vw, 3rem); line-height: 0.9; color: var(--cinnabar); flex: none; width: 1.5em; }
   .charter h3 { font-family: "Fraunces", serif; font-weight: 600; font-size: 1.38rem; letter-spacing: -0.01em; margin-bottom: 10px; }
-  .charter p { font-family: "Noto Serif TC", serif; font-size: 0.96rem; line-height: 1.85; color: var(--ink-soft); }
+  .charter p { font-size: 0.96rem; line-height: 1.85; color: var(--ink-soft); }
   .charter p .en { font-family: "Hanken Grotesk", sans-serif; font-style: italic; font-weight: 600; color: var(--gold-deep); }
 
-  /* =================== 陸 · LOCATION / 柒 · EVENTS =================== */
+  /* =================== LOCATION / EVENTS =================== */
   .loc-line { font-weight: 700; font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); line-height: 2.1; }
 
   /* ---------- dark chapter (events) ---------- */
   .chapter-dark { background: linear-gradient(180deg, #14161f 0%, #1b1410 100%); color: var(--cream); }
   .chapter-dark .ch-no { border-color: #ff684a; color: #ff684a; }
   .chapter-dark .ch-title { color: var(--cream); }
-  .chapter-dark .ch-zh { color: rgba(253, 244, 227, 0.58); }
   .chapter-dark .ch-rule { background: rgba(255, 255, 255, 0.24); }
   .chapter-dark .ch-h2 { color: var(--cream); }
 
@@ -279,8 +272,8 @@
   .connect-kicker::before, .connect-kicker::after { content: ""; width: 34px; height: 1px; background: rgba(232,167,64,.55); }
   .connect h2 { font-family: "Fraunces", serif; font-weight: 600; font-size: clamp(2.4rem, 5.4vw, 4rem); line-height: 1.08; letter-spacing: -0.02em; text-shadow: 0 4px 44px rgba(0,0,0,.55); }
   .connect h2 em { font-style: italic; color: var(--gold); }
-  .connect .zh-line { font-family: "Noto Serif TC", serif; font-weight: 500; font-size: clamp(1.05rem, 1.6vw, 1.3rem); letter-spacing: 0.28em; color: #efe4d0; margin-top: 18px; text-shadow: 0 2px 24px rgba(0,0,0,.6); }
-  .connect .invite { font-family: "Noto Serif TC", serif; color: #e6dac6; max-width: 40ch; margin: 30px auto 38px; line-height: 1.9; text-shadow: 0 2px 20px rgba(0,0,0,.5); }
+  .connect .tagline { font-weight: 500; font-size: clamp(1.05rem, 1.6vw, 1.3rem); letter-spacing: 0.28em; color: #efe4d0; margin-top: 18px; text-shadow: 0 2px 24px rgba(0,0,0,.6); }
+  .connect .invite { color: #e6dac6; max-width: 40ch; margin: 30px auto 38px; line-height: 1.9; text-shadow: 0 2px 20px rgba(0,0,0,.5); }
   .connect-btns { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
   .social { display: inline-flex; align-items: center; gap: 10px; font: 700 0.95rem "Hanken Grotesk", sans-serif; letter-spacing: 0.04em; color: var(--cream); background: rgba(15,12,20,.3); border: 1px solid rgba(253,244,227,.55); border-radius: 2px; padding: 15px 32px; text-decoration: none; transition: background .25s, color .25s, border-color .25s; }
   .social:hover { background: var(--cream); color: var(--espresso); border-color: var(--cream); }
@@ -290,7 +283,7 @@
   footer { background: #120c08; color: var(--espresso-soft); padding: 42px 0; position: relative; }
   .foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
   .foot .fb { display: flex; align-items: center; gap: 10px; color: var(--cream); font-family: "Fraunces", serif; font-weight: 700; }
-  .foot small { font-size: 0.82rem; } .foot .tc { font-family: "Noto Sans TC", sans-serif; }
+  .foot small { font-size: 0.82rem; }
 
   /* =================== RESPONSIVE =================== */
   @media (max-width: 900px) {
@@ -338,10 +331,8 @@
     .ch-what { padding-top: 82px; }
     .ch-head { gap: 10px; margin-bottom: 30px; }
     .ch-h2 { font-size: clamp(2rem, 10vw, 2.6rem); margin-bottom: 34px; }
-    .ch-zh { display: none; }
     .manifest li { grid-template-columns: 44px 1fr; gap: 12px; }
     .plate figcaption { flex-wrap: wrap; gap: 7px 10px; line-height: 1.5; }
-    .plate .pl-zh { width: 100%; margin-left: 0; }
     .daily-item h3 { flex-wrap: wrap; gap: 6px 12px; }
     .charter .rule { gap: 14px; }
     .charter .num { width: 1.2em; }
@@ -401,25 +392,24 @@
     </div>
     <div class="hero-foot">
       <p class="stats"><span>LIVE WITH <b>YC</b> &amp; <b>500 GLOBAL</b> FOUNDERS</span><span class="sep">·</span><span>LOWER HAIGHT, SF</span></p>
-      <a class="scroll-cue" href="#what" aria-label="Scroll to explore">SCROLL · 往下看
+      <a class="scroll-cue" href="#what" aria-label="Scroll to explore">SCROLL
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
       </a>
     </div>
   </header>
 
-  <!-- ============ 壹 · WHAT IS THIS PLACE ============ -->
+  <!-- ============ WHAT IS THIS PLACE ============ -->
   <section class="chapter ch-what" id="what">
     <div class="container">
       <header class="ch-head reveal">
         <span class="ch-no" aria-hidden="true">01</span>
         <span class="ch-title">What is this place</span>
-        <span class="ch-zh" lang="zh-Hant">什麼是這裡</span>
         <span class="ch-rule" aria-hidden="true"></span>
       </header>
       <div class="what-grid">
         <p class="what-lead reveal">A shared home where you don't just get a room — you get <em>direct access</em> to experienced founders, their networks, and the whole Silicon Valley ecosystem.</p>
         <div class="what-side reveal d1">
-          <p class="what-zh" lang="zh-Hant">Formosa Founders House 是台灣創業者的 hacker house——一個實際住在一起的共居空間。你不只是租一個房間，而是加入一個由創業者組成的家，直接連結到矽谷的人脈和資源。</p>
+          <p class="what-note">Formosa Founders House is a hacker house for Taiwanese founders: a real co-living space where people actually live together. You’re not just renting a room. You’re joining a home built by founders, with a direct line into Silicon Valley’s network and resources.</p>
         </div>
       </div>
     </div>
@@ -430,7 +420,7 @@
     <div class="container">
       <header class="moments-head reveal">
         <div>
-          <p class="moments-kicker">Recent moments · 最近的日常</p>
+          <p class="moments-kicker">Recent moments</p>
           <h2>This is what the house is for.</h2>
         </div>
         <p class="moments-intro">Real weeknights, workshops, and founder conversations — captured by the people who were there.</p>
@@ -438,59 +428,58 @@
       <div class="moments-grid">
         <figure class="moment-card moment-a reveal">
           <div class="moment-media"><img src="assets/community/activity-cameras.webp" width="1800" height="1200" alt="Community members learning photography together at Formosa Founders House" loading="lazy" decoding="async"></div>
-          <figcaption><span>Camera workshop</span><span lang="zh-Hant">把視角對準彼此</span></figcaption>
+          <figcaption><span>Camera workshop</span><span>Turning the lens on each other</span></figcaption>
         </figure>
         <figure class="moment-card moment-b reveal">
           <div class="moment-media"><img src="assets/community/kitchen-group.webp" width="1800" height="1350" alt="Formosa Founders House community members gathered in the kitchen" loading="lazy" decoding="async"></div>
-          <figcaption><span>Weeknight at the house</span><span lang="zh-Hant">在廚房相聚</span></figcaption>
+          <figcaption><span>Weeknight at the house</span><span>Gathering in the kitchen</span></figcaption>
         </figure>
         <figure class="moment-card moment-c reveal">
           <div class="moment-media"><img src="assets/community/founder-panel-speaker.webp" width="1800" height="1013" alt="Taiwanese founders speaking on a community panel in San Francisco" loading="lazy" decoding="async"></div>
-          <figcaption><span>Founder panel · San Francisco</span><span lang="zh-Hant">創業者對談</span></figcaption>
+          <figcaption><span>Founder panel · San Francisco</span><span>Founders in conversation</span></figcaption>
         </figure>
         <figure class="moment-card moment-d reveal">
           <div class="moment-media"><img src="assets/community/community-outing.webp" width="1477" height="1108" alt="A Formosa community group enjoying an evening activity together" loading="lazy" decoding="async"></div>
-          <figcaption><span>Community night out</span><span lang="zh-Hant">工作之外</span></figcaption>
+          <figcaption><span>Community night out</span><span>Life beyond work</span></figcaption>
         </figure>
       </div>
     </div>
   </section>
 
-  <!-- ============ 貳 · WHAT WE OFFER ============ -->
+  <!-- ============ WHAT WE OFFER ============ -->
   <section class="chapter" id="offer">
     <div class="container">
       <header class="ch-head reveal">
         <span class="ch-no" aria-hidden="true">02</span>
         <span class="ch-title">What we offer</span>
-        <span class="ch-zh" lang="zh-Hant">我們提供什麼</span>
         <span class="ch-rule" aria-hidden="true"></span>
       </header>
       <h2 class="ch-h2 reveal">Everything a founder needs, <em>under one roof.</em></h2>
       <div class="offer-grid">
         <figure class="plate reveal">
           <div class="plate-img"><img src="assets/community/founder-panel-wide.webp" alt="A Formosa Founders House panel with Taiwanese founders and a live audience" width="1800" height="1013" loading="lazy" decoding="async"></div>
-          <figcaption><span class="pl-no">Founder conversations</span> Shared in public <span class="pl-zh" lang="zh-Hant">創業者對談</span></figcaption>
+          <figcaption><span class="pl-no">Founder conversations</span> Shared in public</figcaption>
         </figure>
         <ol class="manifest">
           <li class="reveal d1">
             <span class="m-no" aria-hidden="true">01</span>
-            <div><h3>Live with proven founders</h3><p>你的室友是 YC 和 500 Global 等頂級 VC 投資的創業者。</p></div>
+            <div><h3>Live with proven founders</h3><p>Your housemates are founders backed by top VCs like YC and 500 Global.</p></div>
           </li>
           <li class="reveal d1">
             <span class="m-no" aria-hidden="true">02</span>
-            <div><h3>Learn from those who've done it</h3><p lang="zh-Hant">直接學習如何 fundraise、找客戶、在矽谷生存。</p></div>
+            <div><h3>Learn from those who've done it</h3><p>Learn firsthand how to fundraise, find customers, and make it in Silicon Valley.</p></div>
           </li>
           <li class="reveal d2">
             <span class="m-no" aria-hidden="true">03</span>
-            <div><h3>Get intros that matter</h3><p lang="zh-Hant">透過室友的人脈接觸到投資人和重要資源。</p></div>
+            <div><h3>Get intros that matter</h3><p>Meet investors and key people through your housemates’ networks.</p></div>
           </li>
           <li class="reveal d2">
             <span class="m-no" aria-hidden="true">04</span>
-            <div><h3>Move fast</h3><p lang="zh-Hant">別人花一年摸索的事，你幾週就懂。</p></div>
+            <div><h3>Move fast</h3><p>What takes others a year to figure out, you’ll learn in weeks.</p></div>
           </li>
           <li class="reveal d3">
             <span class="m-no" aria-hidden="true">05</span>
-            <div><h3>Feel at home</h3><p lang="zh-Hant">火鍋、茶葉蛋、中秋烤肉——在異鄉也有家的感覺。</p></div>
+            <div><h3>Feel at home</h3><p>Hot pot, tea eggs, Mid-Autumn barbecues: a taste of home, far from home.</p></div>
           </li>
         </ol>
       </div>
@@ -502,93 +491,89 @@
     <div class="interlude-bg" aria-hidden="true"></div>
     <div class="interlude-tint" aria-hidden="true"></div>
     <div class="container">
-      <p class="int-kicker reveal">Why it matters <span class="tc" lang="zh-Hant">為什麼重要</span></p>
+      <p class="int-kicker reveal">Why it matters</p>
       <p class="int-quote reveal">You don't need to slowly network your way in. <em>You're already inside.</em></p>
       <div class="int-cols">
-        <p class="reveal" lang="zh-Hant"><span class="n" aria-hidden="true">01</span>台灣創業者來舊金山很辛苦。這裡的創業圈子很緊密，但要打進去很難——尤其是語言和文化障礙。</p>
-        <p class="reveal d1" lang="zh-Hant"><span class="n" aria-hidden="true">02</span>大部分人花一年以上才搞清楚這裡怎麼運作，燒錢燒時間，還感到孤立無援。</p>
-        <p class="reveal d2" lang="zh-Hant"><span class="n" aria-hidden="true">03</span>Formosa House 直接讓你和走過類似的路、或正在走同樣的路的人住在一起。你已經在裡面了。</p>
+        <p class="reveal"><span class="n" aria-hidden="true">01</span>Coming to San Francisco as a Taiwanese founder is hard. The startup scene here is tight-knit and tough to break into, especially across language and cultural barriers.</p>
+        <p class="reveal d1"><span class="n" aria-hidden="true">02</span>Most people spend a year or more figuring out how things work here, burning money and time and feeling alone along the way.</p>
+        <p class="reveal d2"><span class="n" aria-hidden="true">03</span>Formosa House puts you under one roof with people who have walked a similar path, or are walking it right now. You’re already inside.</p>
       </div>
     </div>
   </section>
 
-  <!-- ============ 參 · WHO THRIVES HERE ============ -->
+  <!-- ============ WHO THRIVES HERE ============ -->
   <section class="chapter" id="who">
     <div class="container">
       <header class="ch-head reveal">
         <span class="ch-no" aria-hidden="true">03</span>
         <span class="ch-title">Who thrives here</span>
-        <span class="ch-zh" lang="zh-Hant">誰適合這裡</span>
         <span class="ch-rule" aria-hidden="true"></span>
       </header>
       <h2 class="ch-h2 reveal">We care about what you <em>build</em>, not your title.</h2>
       <div class="who-cols">
         <article class="reveal">
-          <h3>你正在 Build 東西</h3>
-          <p lang="zh-Hant">創業、開源專案、研究、創作、認真的 side project——我們歡迎所有 builders。我們看重的是你的熱情和你正在做的事，而不是你的 title 或背景。</p>
+          <h3>You’re building something</h3>
+          <p>A startup, an open-source project, research, creative work, a serious side project: we welcome all builders. What we care about is your drive and what you’re making, not your title or background.</p>
         </article>
         <article class="reveal d1">
-          <h3 lang="zh-Hant">你對自己有期待</h3>
-          <p lang="zh-Hant">你知道自己要什麼，也願意為此努力。你是自我驅動的——不需要別人督促，因為你本來就熱愛你在做的事。</p>
+          <h3>You hold yourself to a high bar</h3>
+          <p>You know what you want and you’re willing to work for it. You’re self-driven. Nobody needs to push you, because you already love what you do.</p>
         </article>
         <article class="reveal d2">
-          <h3 lang="zh-Hant">你相信互相幫助</h3>
-          <p lang="zh-Hant">這個社群的魔力來自於每個人的付出與分享。煮飯、辦活動、介紹人脈、分享經驗——當你有能力的時候，自然會想要回饋。</p>
+          <h3>You believe in helping each other</h3>
+          <p>The magic of this community comes from what everyone puts in. Cooking, hosting events, making intros, sharing what you’ve learned: when you’re able to, you’ll want to give back.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ============ 肆 · DAILY LIFE ============ -->
+  <!-- ============ DAILY LIFE ============ -->
   <section class="chapter">
     <div class="container">
       <header class="ch-head reveal">
         <span class="ch-no" aria-hidden="true">04</span>
         <span class="ch-title">Daily life</span>
-        <span class="ch-zh" lang="zh-Hant">日常</span>
         <span class="ch-rule" aria-hidden="true"></span>
       </header>
       <div class="daily-grid">
         <div class="daily-items">
-          <div class="daily-item reveal"><h3><span class="tc" lang="zh-Hant">工作日</span> <span class="en">Weekdays</span></h3><p lang="zh-Hant">各自出門工作或在家 deep work。沒有規定，沒有壓力。偶爾在廚房遇到，聊聊最近在做什麼、遇到什麼困難。</p></div>
-          <div class="daily-item reveal d1"><h3><span class="tc" lang="zh-Hant">晚餐時光</span> <span class="en">Dinner</span></h3><p lang="zh-Hant">有人煮飯就一起吃，沒人煮就各自解決或一起叫外賣。不強制，但總有機會坐下來，聊聊今天發生的事。</p></div>
-          <div class="daily-item reveal d2"><h3><span class="tc" lang="zh-Hant">週末聚會</span> <span class="en">Weekends</span></h3><p lang="zh-Hant">有時候會辦個小型聚會，邀請其他在矽谷的台灣創業者。分享經驗、互相幫忙、或純粹認識新朋友。</p></div>
-          <div class="daily-item reveal d3"><h3><span class="tc" lang="zh-Hant">互相支持</span> <span class="en">Support</span></h3><p lang="zh-Hant">Demo day 前幫忙練習、募資時給建議、失落時有人聽你說話。不是導師關係，而是同在創業路上的夥伴。</p></div>
+          <div class="daily-item reveal"><h3>Weekdays</h3><p>Everyone heads out to work or does deep work at home. No rules, no pressure. You’ll run into each other in the kitchen and catch up on what you’re building and what’s been hard.</p></div>
+          <div class="daily-item reveal d1"><h3>Dinner</h3><p>If someone cooks, we eat together. If not, everyone sorts themselves out or we order in. Nothing is mandatory, but there’s always a chance to sit down and talk about the day.</p></div>
+          <div class="daily-item reveal d2"><h3>Weekends</h3><p>Sometimes we host small get-togethers and invite other Taiwanese founders from around Silicon Valley to swap stories, help each other out, or just make new friends.</p></div>
+          <div class="daily-item reveal d3"><h3>Support</h3><p>Practice runs before demo day, advice while you fundraise, someone to listen when things go wrong. Not mentors, but fellow founders on the same road.</p></div>
         </div>
         <figure class="plate reveal d1">
           <div class="plate-img"><img src="assets/community/hotpot-night.webp" alt="House members sharing hot pot together around the dinner table" width="1800" height="1200" loading="lazy" decoding="async"></div>
-          <figcaption><span class="pl-no">Shared dinner</span> Whenever it happens <span class="pl-zh" lang="zh-Hant">有人煮飯就一起吃</span></figcaption>
+          <figcaption><span class="pl-no">Shared dinner</span> Whenever it happens</figcaption>
         </figure>
       </div>
     </div>
   </section>
 
-  <!-- ============ 伍 · HOUSE RULES ============ -->
+  <!-- ============ HOUSE RULES ============ -->
   <section class="chapter" id="rules">
     <div class="container">
       <header class="ch-head reveal">
         <span class="ch-no" aria-hidden="true">05</span>
         <span class="ch-title">House rules</span>
-        <span class="ch-zh" lang="zh-Hant">家規</span>
         <span class="ch-rule" aria-hidden="true"></span>
       </header>
       <h2 class="ch-h2 reveal">Four things we live by.</h2>
       <div class="charter">
-        <div class="rule reveal"><span class="num" aria-hidden="true">01</span><div><h3>Bet on yourself.</h3><p lang="zh-Hant">創業就是押注自己。不要等完美時機，不要等別人點頭，不要等準備好了再開始。<span class="en">Execution is everything</span>——想法沒有價值，執行才有。</p></div></div>
-        <div class="rule reveal d1"><span class="num" aria-hidden="true">02</span><div><h3>Talk about what works.</h3><p lang="zh-Hant">我們這裡不批評、不抱怨。當你遇到問題，帶著你的解法來找人討論——<span class="en">solution-oriented</span> 是我們的文化。</p></div></div>
-        <div class="rule reveal"><span class="num" aria-hidden="true">03</span><div><h3>No ego at the door.</h3><p lang="zh-Hant">不管你是 pre-idea 還是 post-Series A，在這裡大家都是平等的。每個人都有值得學習的地方。把 status 留在門外。</p></div></div>
-        <div class="rule reveal d1"><span class="num" aria-hidden="true">04</span><div><h3>Default to action.</h3><p lang="zh-Hant">卡住的時候，選一個方向，動起來。你從行動中學到的，永遠比從猶豫中多。</p></div></div>
+        <div class="rule reveal"><span class="num" aria-hidden="true">01</span><div><h3>Bet on yourself.</h3><p>Starting a company is a bet on yourself. Don’t wait for the perfect moment, for someone’s approval, or until you feel ready. <span class="en">Execution is everything.</span> Ideas are worth nothing until you act on them.</p></div></div>
+        <div class="rule reveal d1"><span class="num" aria-hidden="true">02</span><div><h3>Talk about what works.</h3><p>We don’t criticize and we don’t complain. When you hit a problem, bring a possible fix to the conversation. Being <span class="en">solution-oriented</span> is our culture.</p></div></div>
+        <div class="rule reveal"><span class="num" aria-hidden="true">03</span><div><h3>No ego at the door.</h3><p>Whether you’re pre-idea or post-Series A, everyone here is equal, and everyone has something worth learning from. Leave your status at the door.</p></div></div>
+        <div class="rule reveal d1"><span class="num" aria-hidden="true">04</span><div><h3>Default to action.</h3><p>When you’re stuck, pick a direction and move. You’ll always learn more from acting than from hesitating.</p></div></div>
       </div>
     </div>
   </section>
 
-  <!-- ============ 陸 · LOCATION ============ -->
+  <!-- ============ LOCATION ============ -->
   <section class="chapter" id="details">
     <div class="container">
       <header class="ch-head reveal">
         <span class="ch-no" aria-hidden="true">06</span>
         <span class="ch-title">Location</span>
-        <span class="ch-zh" lang="zh-Hant">地點</span>
         <span class="ch-rule" aria-hidden="true"></span>
       </header>
       <h2 class="ch-h2 reveal">Lower Haight.</h2>
@@ -599,13 +584,12 @@
     </div>
   </section>
 
-  <!-- ============ 柒 · EVENTS ============ -->
+  <!-- ============ EVENTS ============ -->
   <section class="chapter chapter-dark" id="events">
     <div class="container">
       <header class="ch-head reveal">
         <span class="ch-no" aria-hidden="true">07</span>
         <span class="ch-title">Events</span>
-        <span class="ch-zh" lang="zh-Hant">活動</span>
         <span class="ch-rule" aria-hidden="true"></span>
       </header>
       <h2 class="ch-h2 reveal">Come by before you move in.</h2>
@@ -623,10 +607,9 @@
     <div class="connect-bg" aria-hidden="true"></div>
     <div class="connect-tint" aria-hidden="true"></div>
     <div class="container">
-      <p class="connect-kicker reveal">Connect · 加入我們</p>
+      <p class="connect-kicker reveal">Connect</p>
       <h2 class="reveal">The light is <em>on.</em></h2>
-      <p class="zh-line reveal d1" lang="zh-Hant">燈，為你亮著。</p>
-      <p class="invite reveal d1">想了解更多、或想加入 Formosa House，來 Threads 或 Instagram 找我們。</p>
+      <p class="invite reveal d1">Want to learn more or join Formosa House? Find us on Threads or Instagram.</p>
       <div class="connect-btns reveal d2">
         <a class="social" href="https://www.threads.net/@formosa.founders" target="_blank" rel="noopener">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.2 2c-5.5 0-9 3.3-9.2 9.9C3.2 18.6 6.7 22 12.2 22c3 0 5.2-1.2 6.6-3.2 1.3-1.9 1.4-4.3.3-6-.9-1.4-2.5-2.3-4.5-2.5-.1-.9-.5-1.6-1.1-2-.7-.5-1.7-.6-2.7-.3-1.2.4-1.9 1.4-1.8 2.6.1 1.4 1.3 2.4 3.1 2.6.6.1 1.2 0 1.7-.1.2.9-.1 1.7-.9 2.1-.9.5-2.3.3-3.2-.6-1-1-1.5-2.6-1.5-4.7 0-3.1 1.6-4.7 4.8-4.7 2.1 0 3.5.8 4.3 2.4l1.8-.9C18.1 3.3 15.7 2 12.2 2z"/></svg>
@@ -647,7 +630,7 @@
       <span class="fb">
         <img class="footer-logo" src="assets/ffh_logo.jpg" width="72" height="72" alt="Formosa Founders House">
       </span>
-      <small>Made with ❤️ in SF · <span class="tc" lang="zh-Hant">福爾摩沙創業者之家</span> · San Francisco, Lower Haight</small>
+      <small>Made with ❤️ in SF · Lower Haight, San Francisco</small>
       <span class="foot-legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a></span>
     </div>
   </footer>
