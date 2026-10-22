@@ -70,3 +70,8 @@ a { color: inherit; }
   .site-footer { padding: 30px 20px; align-items: flex-start; flex-direction: column; gap: 6px; }
   .footer-legal { margin-left: 0; }
 }
+
+html:lang(zh-Hant-TW) body {
+  font-family: "Instrument Sans", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  line-height: 1.8;
+}

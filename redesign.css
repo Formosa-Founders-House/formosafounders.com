@@ -807,3 +807,52 @@ footer { padding: 34px 0; background: #111; color: rgba(255,255,255,.58); }
   }
   .moment-card, .moment-media img { transition: none; }
 }
+
+/* Language switcher */
+.lang-switch {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  padding: 0 4px;
+  color: #4d4c48;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.lang-switch:hover { color: var(--accent); }
+.lang-switch:lang(zh-Hant-TW) { font-family: "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif; }
+
+/* Traditional Chinese (Taiwan) */
+html:lang(zh-Hant-TW) body {
+  font-family: "Instrument Sans", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  letter-spacing: 0;
+}
+html:lang(zh-Hant-TW) em { font-style: normal; }
+html:lang(zh-Hant-TW) .hero h1,
+html:lang(zh-Hant-TW) .ch-h2,
+html:lang(zh-Hant-TW) .moments h2,
+html:lang(zh-Hant-TW) .int-quote,
+html:lang(zh-Hant-TW) .connect h2 { line-height: 1.25; letter-spacing: 0.01em; }
+html:lang(zh-Hant-TW) .hero h1 { max-width: none; font-size: clamp(2.4rem, 4.6vw, 3.8rem); }
+html:lang(zh-Hant-TW) .what-lead { line-height: 1.5; }
+/* break CJK headings only at the <wbr> phrase hints, never mid-word */
+html:lang(zh-Hant-TW) .hero h1,
+html:lang(zh-Hant-TW) .ch-h2,
+html:lang(zh-Hant-TW) .moments h2,
+html:lang(zh-Hant-TW) .int-quote,
+html:lang(zh-Hant-TW) .connect h2 { word-break: keep-all; overflow-wrap: anywhere; }
+.nav-cta { white-space: nowrap; }
+html:lang(zh-Hant-TW) p,
+html:lang(zh-Hant-TW) li { line-height: 1.8; }
+
+@media (max-width: 600px) {
+  .lang-switch { min-height: 38px; font-size: .8rem; }
+  .nav { gap: 10px; }
+  html:lang(zh-Hant-TW) .hero h1 { font-size: clamp(2.4rem, 11vw, 3.4rem); line-height: 1.2; }
+  html:lang(zh-Hant-TW) .nav-cta { padding-inline: 11px; }
+  html:lang(zh-Hant-TW) .brand-name { font-size: .8rem; }
+  html:lang(zh-Hant-TW) .ch-h2,
+  html:lang(zh-Hant-TW) .moments h2 { font-size: clamp(2rem, 9.5vw, 2.8rem); }
+  html:lang(zh-Hant-TW) .int-quote { font-size: clamp(2.1rem, 10vw, 3rem); }
+}
